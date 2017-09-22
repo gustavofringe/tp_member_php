@@ -1,16 +1,13 @@
 <?php
-class Database {
+class Database{
     public $pdo;
-    private $conf = 'default';
-    private $confdb;
+    public $conf = 'default';
+    public $confdb;
     public function __construct() {
-
         try {
             $this->confdb  = Conf::$database[$this->conf];
             $this->pdo = new PDO(
-                'mysql:host='.$this->confdb['host'].
-                ';dbname='.$this->confdb['database'].
-                ';',
+                'mysql:host='.$this->confdb['host'].';dbname='.$this->confdb['database'].';',
                 $this->confdb['login'],
                 $this->confdb['password']
             );

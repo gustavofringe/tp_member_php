@@ -1,2 +1,2 @@
 <?php
-require ROOT.'/views/home.php';
+$home = new home;

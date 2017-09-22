@@ -1,5 +1,5 @@
 <?php
-$users = new register();
+$users = new register;
 //session_start();
 if (isset($_SESSION['user'])) {
     setFlash('Vous êtes déjà connecté');
@@ -30,7 +30,7 @@ if (!empty($_POST)) {
         $errors['password'] = "Vous devez rentrer le même mot de passe ";
     }
     if (empty($errors)) {
-        $users->register($_POST['username'],$_POST['email'], $_POST['password']);
+        $users->regist($_POST['username'],$_POST['email'], $_POST['password']);
         setFlash("Un e-mail de confirmation vous a été envoyé pour valider votre compte");
         header('Location: '.BASE_URL.'/login');
         die();

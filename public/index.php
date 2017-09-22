@@ -5,6 +5,6 @@ define('BASE_URL', dirname(dirname($_SERVER['SCRIPT_NAME'])));
 include ROOT.'/library/includes.php';
 
 Autoloader::register();
-new Route();
+new Route;
 
 ?>
