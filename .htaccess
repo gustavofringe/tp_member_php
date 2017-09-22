@@ -339,6 +339,7 @@ AddDefaultCharset utf-8
     RewriteRule ^ - [env=proto:https]
     RewriteCond %{HTTPS} !=on
     RewriteRule ^ - [env=proto:http]
+    RewriteRule ^(.*) public/index.php?url=$1
 
 </IfModule>
 
