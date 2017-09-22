@@ -6,7 +6,7 @@ class Database {
     public function __construct() {
 
         try {
-            $this->confdb  = Conf::$databases[$this->conf];
+            $this->confdb  = Conf::$database[$this->conf];
             $this->pdo = new PDO(
                 'mysql:host='.$this->confdb['host'].
                 ';dbname='.$this->confdb['database'].
