@@ -1,9 +1,9 @@
 <?php
-class Database{
+class model{
     public $pdo;
     public $conf = 'default';
     public $confdb;
-    public function __construct() {
+    public function __construct(){
         try {
             $this->confdb  = Conf::$database[$this->conf];
             $this->pdo = new PDO(

@@ -5,10 +5,13 @@ class Autoloader{
     }
 
     public static function autoload($class){
-        require ROOT.'/model/' . $class . '.php';
-
-        require ROOT.'/controller/' . $class . 'Controller.php';
-        require ROOT.'/views/' . $class . '.php';
+            include ROOT . '/model/' . $class . '.php';
+        if($class !== "model" && isset($class)) {
+            include ROOT . '/controller/' . $class . 'Controller.php';
+        }
+        if($class !== "model") {
+            include ROOT . '/views/' . $class . '.php';
+        }
     }
 
 }

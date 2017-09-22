@@ -31,6 +31,6 @@
             <label for="exampleInputPassword1">Confirmer votre mot de passe</label>
             <input type="password" class="form-control" name="confirm_password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button class="btn btn-primary">Submit</button>
     </form>
 <?php include 'partials/footer.php'; ?>

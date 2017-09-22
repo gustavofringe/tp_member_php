@@ -1,9 +1,7 @@
 <?php
 $users = new register;
-//session_start();
-if (isset($_SESSION['user'])) {
-    setFlash('Vous êtes déjà connecté');
-    header('Location: '.ROOT);
+if(!isset($_SESSION['user'])){
+    session_start();
 }
 if (!empty($_POST)) {
     //verify entry
@@ -20,7 +18,7 @@ if (!empty($_POST)) {
         $errors['email'] = "Votre email n'est pas valide";
     } else {
         // verify if isset another identical user
-        $email = $users->ckeck_email($_POST['email']);
+        $email = $users->check_email($_POST['email']);
         if ($email) {
             $errors['email'] = "Cette email est déjà utilisé";
         }
@@ -31,6 +29,8 @@ if (!empty($_POST)) {
     }
     if (empty($errors)) {
         $users->regist($_POST['username'],$_POST['email'], $_POST['password']);
+
+        //send mail
         setFlash("Un e-mail de confirmation vous a été envoyé pour valider votre compte");
         header('Location: '.BASE_URL.'/login');
         die();

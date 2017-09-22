@@ -1,6 +1,6 @@
 <?php
 $title_page = "Accueil";
-
+print_r($_SESSION);
 ?>
 
 <?php include 'partials/header.php'; ?>
