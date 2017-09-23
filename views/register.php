@@ -14,7 +14,7 @@
         </ul>
     </div>
 <?php endif; ?>
-    <form method="post" class="mt-3 mb-5">
+    <form method="post" action="" class="mt-3 mb-5">
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
             <input type="text" class="form-control" id="username" name="username">

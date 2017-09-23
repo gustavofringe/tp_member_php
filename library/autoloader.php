@@ -5,7 +5,6 @@ class Autoloader{
     }
 
     public static function autoload($class){
-            include ROOT . '/model/' . $class . '.php';
         if($class !== "model" && isset($class)) {
             include ROOT . '/controller/' . $class . 'Controller.php';
         }

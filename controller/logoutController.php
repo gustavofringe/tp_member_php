@@ -1,6 +1,12 @@
 <?php
-session_start();
-unset($_SESSION['user']);
-setFlash('Vous êtes maintenant déconnecter');
-header('Location: '.BASE_URL);
-die();
+class logout
+{
+    public function __construct()
+    {
+        session_start();
+        unset($_SESSION['user']);
+        Session::setFlash('Vous êtes maintenant déconnecter','danger');
+        header('Location: '.BASE_URL);
+        die();
+    }
+}

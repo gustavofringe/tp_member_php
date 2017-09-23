@@ -1,14 +1,18 @@
 <?php
-class model{
+
+class Model
+{
     public $pdo;
     public $conf = 'default';
     public $confdb;
-    public function __construct(){
+
+    public function __construct()
+    {
         try {
-            $this->confdb  = Conf::$database[$this->conf];
+            $this->confdb = Conf::$database[$this->conf];
             $this->pdo = new PDO(
-                'mysql:host='.$this->confdb['host'].';dbname='.$this->confdb['database'].';',
-                $this->confdb['login'],
+                'mysql:host=' . $this->confdb['host'] . ';dbname=' . $this->confdb['database'] . ';',
+                $this->confdb['loginModel'],
                 $this->confdb['password']
             );
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);

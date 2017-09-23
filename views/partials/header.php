@@ -9,7 +9,7 @@
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="icon" href="favicon.ico">
+        <link rel="icon" href="public/img/favicon.ico">
         <link rel="stylesheet" href="public/css/main.css">
         <link rel="stylesheet" href="public/css/main.css">
 
@@ -29,7 +29,7 @@
         <div class="collapse navbar-collapse" id="containerNavbar">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="<?= BASE_URL; ?>">Home <span class="sr-only">(current)</span></a>
             </li>
             <?php if(!isset($_SESSION['user'])): ?>
             <li class="nav-item">

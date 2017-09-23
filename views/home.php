@@ -1,6 +1,8 @@
 <?php
 $title_page = "Accueil";
-print_r($_SESSION);
+if (!isset($_SESSION['user'])) {
+    session_start();
+}
 ?>
 
 <?php include 'partials/header.php'; ?>

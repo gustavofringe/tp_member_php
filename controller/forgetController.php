@@ -1,10 +1,10 @@
 <?php
-class Home extends Controller
-{
+class Forget extends Controller{
     public function __construct()
     {
         parent::__construct();
-        $this->require_view('home');
+    }
+    public function forget(){
 
     }
 }

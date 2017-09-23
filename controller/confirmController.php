@@ -1,23 +1,34 @@
 <?php
-$user_id = $url[1];
-$token = $url[2];
-$users = new register;
-$user = $users->check_id($user_id);
+class Confirm extends Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function user($id, $token)
+    {
+        $this->loadModel('user');
+        $users = new User();
+        $user = $users->check_id($id);
 //start session
-if(!isset($_SESSION['user'])){
-    session_start();
-}
-if ($user && $user->token == $token) {
-    //prepare table for update
-    $userconf = $users->confirmed($user_id);
-    //define session user
-    $_SESSION['user'] = $user->username;
-    setFlash("Votre compte a bien été validé");
-    header('Location: '.BASE_URL);
-    die();
-} else {
-    setFlash("Vous n'êtes pas un utilisateur enregisté", 'danger');
-    header('Location: '.BASE_URL.'/register');
-    die();
+        if (!isset($_SESSION['user'])) {
+            session_start();
+        }
+
+        if ($user && $user->token == $token) {
+            //prepare table for update
+            $userconf = $users->confirmed($id);
+            //define session user
+            $_SESSION['user'] = $user->username;
+            Session::setFlash("Votre compte a bien été validé");
+            header('Location: ' . BASE_URL);
+            die();
+        } else {
+            Session::setFlash("Vous n'êtes pas un utilisateur enregisté", 'danger');
+            header('Location: ' . BASE_URL . '/register');
+            die();
+        }
+    }
 }
 ?>

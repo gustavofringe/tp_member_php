@@ -1,6 +1,11 @@
 <?php
-class register extends model{
+class User extends Model{
     public $pdo;
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
     public function check_username($username){
         $req = $this->pdo->prepare("SELECT id FROM users WHERE username = ?");
         $req->execute([$username]);
@@ -21,7 +26,7 @@ class register extends model{
         $user = $req->fetch();
         return $user;
     }
-    public function regist($username, $email,$pass){
+    public function register($username, $email,$pass){
         $req = $this->pdo->prepare("INSERT INTO users SET username = ?, email = ?, password = ?, token = ?, created_at = NOW(), confirmed_at= ?");
         //hash password
         $password = password_hash($pass, PASSWORD_BCRYPT);
@@ -30,11 +35,16 @@ class register extends model{
         //execute request
         $req->execute([$username, $email, $password, $token, false]);
         $user_id = $this->pdo->lastInsertId();
-        mail($email, "Validation de votre compte", "Afin de valider votre compte merci de cliquer sur ce lien\n\nhttp://localhost/tp_member_php/confirm/$user_id/$token");
+        mail($email, "Validation de votre compte", "Afin de valider votre compte merci de cliquer sur ce lien\n\nhttp://localhost/tp_member_php/confirm/user/$user_id/$token");
 
     }
     public function confirmed($id){
         $this->pdo->prepare('UPDATE users SET token = NULL, created_at = NOW(), confirmed = ?, confirmed_at=NOW() WHERE id=?')->execute([true, $id]);
-
+    }
+    public function check_users($name){
+        $req = $this->pdo->prepare('SELECT * FROM users WHERE (username = :username OR email = :username) AND confirmed IS NOT NULL');
+        $req->execute(['username' => $name]);
+        $user = $req->fetch();
+        return $user;
     }
 }
