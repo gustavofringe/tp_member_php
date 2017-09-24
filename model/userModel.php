@@ -47,4 +47,27 @@ class User extends Model{
         $user = $req->fetch();
         return $user;
     }
+    public function check_email_confirm($mail){
+        $req = $this->pdo->prepare('SELECT * FROM users WHERE email = ? AND confirmed IS NOT NULL');
+        $req->execute([$mail]);
+        $user = $req->fetch();
+        return $user;
+    }
+    public function forget($user){
+        //create a token for reset password
+        $reset = md5(time()*5);
+        //update database
+        $this->pdo->prepare('UPDATE users SET reset = ? WHERE id = ?')->execute([$reset, $user]);
+        mail($_POST['email'], "Réinitialisation de votre mot de passe", "Afin de réinitialiser votre mot de passe merci de cliquer sur ce lien:\n\nhttp://localhost/tp_member_php/reset/user/$user/$reset");
+    }
+    public function check_reset($id, $token){
+        $req = $this->pdo->prepare('SELECT * FROM users WHERE id = ? AND reset = ?');
+        $req->execute([$id, $token]);
+        $user = $req->fetch();
+        return $user;
+    }
+    public function reset_password($password){
+        $password = password_hash($password, PASSWORD_BCRYPT);
+        $this->pdo->prepare('UPDATE users SET password = ?, reset = NULL')->execute([$password]);
+    }
 }

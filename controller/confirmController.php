@@ -8,9 +8,9 @@ class Confirm extends Controller
 
     public function user($id, $token)
     {
-        $this->loadModel('user');
-        $users = new User();
-        $user = $users->check_id($id);
+        //$this->loadModel('user');
+        //$users = new User();
+        $user = $this->model->check_id($id);
 //start session
         if (!isset($_SESSION['user'])) {
             session_start();
@@ -18,7 +18,7 @@ class Confirm extends Controller
 
         if ($user && $user->token == $token) {
             //prepare table for update
-            $userconf = $users->confirmed($id);
+            $userconf = $this->model->confirmed($id);
             //define session user
             $_SESSION['user'] = $user->username;
             Session::setFlash("Votre compte a bien été validé");

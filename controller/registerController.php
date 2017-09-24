@@ -8,10 +8,8 @@ class Register extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function register()
     {
-        $this->loadModel('user');
-        $model = new User();
         if (!isset($_SESSION['user']))
         {
             session_start();
@@ -23,7 +21,7 @@ class Register extends Controller
                 $errors['username'] = "Votre nom d'utilisateur est incorrect";
             } else {
 
-                $user = $model->check_username($_POST['username']);
+                $user = $this->model->check_username($_POST['username']);
                 if ($user) {
                     $errors['username'] = "Ce nom d'utilisateur est déjà utilisé";
                 }
@@ -33,7 +31,7 @@ class Register extends Controller
                 $errors['email'] = "Votre email n'est pas valide";
             } else {
                 // verify if isset another identical user
-                $email = $model->check_email($_POST['email']);
+                $email = $this->model->check_email($_POST['email']);
                 if ($email) {
                     $errors['email'] = "Cette email est déjà utilisé";
                 }
@@ -43,7 +41,7 @@ class Register extends Controller
                 $errors['password'] = "Vous devez rentrer le même mot de passe ";
             }
             if (empty($errors)) {
-                $model->register($_POST['username'], $_POST['email'], $_POST['password']);
+                $this->model->register($_POST['username'], $_POST['email'], $_POST['password']);
 
                 //send mail
                 Session::setFlash("Un e-mail de confirmation vous a été envoyé pour valider votre compte");

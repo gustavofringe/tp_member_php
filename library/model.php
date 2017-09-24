@@ -12,7 +12,7 @@ class Model
             $this->confdb = Conf::$database[$this->conf];
             $this->pdo = new PDO(
                 'mysql:host=' . $this->confdb['host'] . ';dbname=' . $this->confdb['database'] . ';',
-                $this->confdb['loginModel'],
+                $this->confdb['login'],
                 $this->confdb['password']
             );
             $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);

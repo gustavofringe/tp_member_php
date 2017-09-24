@@ -7,16 +7,16 @@ class Login extends Controller
         parent::__construct();
     }
 
-    public function index()
+    public function login()
     {
-        $this->loadModel('user');
-        $model = new User();
+
+        //$model = new User();
         if (!isset($_SESSION['user'])) {
             session_start();
         }
 //verify entry
         if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
-            $user = $model->check_users($_POST['username']);
+            $user = $this->model->check_users($_POST['username']);
             if (isset($user->confirmed) && $user->confirmed == true) {
                 if (password_verify($_POST['password'], $user->password)) {
                     $_SESSION['user'] = $user->username;
@@ -26,7 +26,7 @@ class Login extends Controller
                     Session::setFlash("Identifiant ou mot de passe incorrect", 'danger');
                 }
             } else {
-                Session::setFlash("Vous devez confirmer votre compte", 'danger');
+                Session::setFlash("Aucun compte ne correspond", 'danger');
             }
         }
         include ROOT . '/views/login.php';
