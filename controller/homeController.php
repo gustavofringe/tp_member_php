@@ -8,6 +8,6 @@ class Home extends Controller
 
     }
     public function home(){
-        $this->require_view('home');
+        $this->loadView('home');
     }
 }

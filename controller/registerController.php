@@ -10,11 +10,7 @@ class Register extends Controller
 
     public function register()
     {
-        if (!isset($_SESSION['user']))
-        {
-            session_start();
-        }
-
+        Session::start('user');
         if (!empty($_POST)) {
             //verify entry
             if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
@@ -37,20 +33,17 @@ class Register extends Controller
                 }
             }
             //verify password
-            if (empty($_POST['password']) || ($_POST['password'] != $_POST['confirm_password'])) {
-                $errors['password'] = "Vous devez rentrer le même mot de passe ";
-            }
+            $errors['password'] = Service::checkPassword($_POST['confirm_password'], $_POST['password']);
             if (empty($errors)) {
                 $this->model->register($_POST['username'], $_POST['email'], $_POST['password']);
-
                 //send mail
                 Session::setFlash("Un e-mail de confirmation vous a été envoyé pour valider votre compte");
                 header('Location: ' . BASE_URL . '/login');
                 die();
             }
         }
-        //include ROOT.'/views/register.php';
-        $this->require_view('register');
+        include ROOT.'/views/register.php';
+        //$this->loadView('register');
     }
 }
 

@@ -1,10 +1,8 @@
 <?php
 class Controller
 {
-    public function __construct()
-    {
-        //$this->view = new View();
-    }
+
+    public function __construct(){}
 
     public function loadModel($name)
     {
@@ -15,7 +13,7 @@ class Controller
             $this->model = new $modelName();
         }
     }
-    public function require_view($view){
-        include ROOT.'/views/'.$view.'.php';
+    public function loadView($views) {
+        include ROOT.'/views/'.$views.'.php';
     }
 }

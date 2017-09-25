@@ -1,7 +1,5 @@
-<?php $title_page = "S'enregistrer";?>
-<?php include 'partials/header.php'; 
-?>
-    <h1 class="mt-3">Inscription</h1>
+<?php $content = "register"; ?>
+<h1 class="mt-3">Inscription</h1>
     <!--if errors form-->
 <?php if (!empty($errors)): ?>
     <div class="alert alert-danger">
@@ -34,4 +32,3 @@
         </div>
         <button class="btn btn-primary">Submit</button>
     </form>
-<?php include 'partials/footer.php'; ?>

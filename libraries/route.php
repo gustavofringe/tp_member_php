@@ -25,6 +25,8 @@ class Route
         }
         $controller = new $url[0];
         $controller->loadModel('user');
+        //require ROOT.'/views/'.$url[0].'.php';
+       //$controller->loadView($url[0]);
         if (isset($url[2])) {
             if(method_exists($controller, $url[1])) {
                 $controller->{$url[1]}($url[2],$url[3]);
