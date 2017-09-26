@@ -12,6 +12,5 @@ class Home extends Controller
         $view = new View('pages', 'home');
         
         $view->render(['home']);
-        dd($view);
     }
 }

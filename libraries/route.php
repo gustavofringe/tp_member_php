@@ -29,6 +29,8 @@ class Route
             die();
         }
         $controller = new $url[1];
+        $controller->loadModel('User');
+        $controller->{$url[1]}();
         if (isset($url[2])) {
             if(method_exists($controller, $url[2])) {
                 $controller->{$url[2]}($url[3],$url[4]);

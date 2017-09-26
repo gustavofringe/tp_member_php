@@ -11,9 +11,8 @@
         <!-- Place favicon.ico in the root directory -->
         <link rel="icon" href="public/img/favicon.ico">
         <link rel="stylesheet" href="public/css/main.css">
-        <link rel="stylesheet" href="public/css/main.css">
 
-        <link rel="stylesheet" href="public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo BASE; ?>/public/css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
@@ -33,14 +32,14 @@
             </li>
             <?php if(!isset($_SESSION['user'])): ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL;?>/login">Se connecter</a>
+              <a class="nav-link" href="<?= BASE_URL;?>/users/login">Se connecter</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL; ?>/register">S'enregistrer</a>
+              <a class="nav-link" href="<?= BASE_URL; ?>/users/register">S'enregistrer</a>
             </li>
 <?php else: ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL;?>/logout">Se déconnecter</a>
+              <a class="nav-link" href="<?= BASE_URL;?>/users/logout">Se déconnecter</a>
             </li>
 <?php endif; ?>
           </ul>

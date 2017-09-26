@@ -2,18 +2,20 @@
 
 class Login extends Controller
 {
+    public $view;
     public function __construct()
     {
         parent::__construct();
+        print_r(ROOT );
+        $this->view = new View('users', 'login');
+        
     }
 
     public function login()
     {
-
+echo 111;
         //$model = new User();
-        if (!isset($_SESSION['user'])) {
-            session_start();
-        }
+        Session::start('user');
 //verify entry
         if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
             $user = $this->model->check_users($_POST['username']);
@@ -29,7 +31,8 @@ class Login extends Controller
                 Session::setFlash("Aucun compte ne correspond", 'danger');
             }
         }
-        include ROOT . '/views/login.php';
+        $this->view->render(['login']);
+        //include ROOT . '/views/login.php';
         //$this->require_view('login');
     }
 

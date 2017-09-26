@@ -22,6 +22,7 @@ class View {
       ob_start();
       require $file;
       return ob_get_clean();
+      //ob_end_flush();
     }
     else {
       throw new Exception("Fichier '$file' introuvable");
