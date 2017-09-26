@@ -9,8 +9,8 @@
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="icon" href="../public/img/favicon.ico">
-        <link rel="stylesheet" href="public/css/main.css">
+        <link rel="icon" href="<?php echo BASE_URL; ?>/public/img/favicon.ico">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/main.css">
 
         <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
@@ -63,9 +63,10 @@
       </div>
     </footer>
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script>window.jQuery || document.write('<script src="<?php echo BASE_URL; ?>/public/js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="<?php echo BASE_URL; ?>/public/js/plugins.js"></script>
+        <script src="<?php echo BASE_URL; ?>/public/js/main.js"></script>
+        <script src="<?php echo BASE_URL; ?>/public/js/bootstrap.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

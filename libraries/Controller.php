@@ -1,8 +1,8 @@
 <?php
 class Controller
 {
-
-    public function __construct(){
+    public function __construct() {
+       //$this->file = ROOT."/views/".$controller.'/' . $action . ".php";
     }
 
     public function loadModel($name)
@@ -13,8 +13,5 @@ class Controller
             $modelName = 'User';
             $this->model = new $modelName();
         }
-    }
-    public function loadView($views) {
-        include ROOT.'/views/pages/'.$views.'.php';
     }
 }

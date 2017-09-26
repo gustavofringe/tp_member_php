@@ -1,5 +1,5 @@
-<?php $content = "register"; ?>
-<h1 class="mt-3">Inscription</h1>
+<?php $this->title = "S'enregistrer";?>
+    <h1 class="mt-3">Inscription</h1>
     <!--if errors form-->
 <?php if (!empty($errors)): ?>
     <div class="alert alert-danger">

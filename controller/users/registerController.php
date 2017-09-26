@@ -2,10 +2,11 @@
 
 class Register extends Controller
 {
-
+public $view;
     public function __construct()
     {
         parent::__construct();
+        $this->view = new View('users', 'register');
     }
 
     public function register()
@@ -42,7 +43,8 @@ class Register extends Controller
                 die();
             }
         }
-        include ROOT.'/views/register.php';
+        $this->view->render(['register']);
+        //include ROOT.'/views/register.php';
         //$this->loadView('register');
     }
 }

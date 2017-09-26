@@ -28,7 +28,7 @@ class Login extends Controller
                 Session::setFlash("Aucun compte ne correspond", 'danger');
             }
         }
-        $this->view->render(['login', 'se']);
+        $this->view->render(['login']);
         //include ROOT . '/views/login.php';
         //$this->require_view('login');
     }

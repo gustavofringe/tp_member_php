@@ -1,10 +1,10 @@
 <?php
-include 'conf.php';
-include 'controller.php';
-include 'route.php';
-include 'model.php';
-//include 'autoloader.php';
-include 'view.php';
-include 'session.php';
-include 'service.php';
-include 'debug.php';
+include 'Conf.php';
+include 'Controller.php';
+include 'Route.php';
+include 'Model.php';
+//include 'Autoloader.php';
+include 'View.php';
+include 'Session.php';
+include 'Service.php';
+include 'Debug.php';
