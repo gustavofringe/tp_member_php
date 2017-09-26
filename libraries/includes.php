@@ -7,3 +7,4 @@ include 'model.php';
 include 'view.php';
 include 'session.php';
 include 'service.php';
+include 'debug.php';

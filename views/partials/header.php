@@ -33,7 +33,7 @@
             </li>
             <?php if(!isset($_SESSION['user'])): ?>
             <li class="nav-item">
-              <a class="nav-link" href="<?= BASE_URL;?>/login">Se connecter</a>
+              <a class="nav-link" href="<?= BASE_URL;?>/users/login">Se connecter</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= BASE_URL; ?>/register">S'enregistrer</a>
