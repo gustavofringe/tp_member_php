@@ -14,6 +14,6 @@ class Controller
         }
     }
     public function loadView($views) {
-        include ROOT.'/views/'.$views.'.php';
+        include ROOT.'/views/pages/'.$views.'.php';
     }
 }
