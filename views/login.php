@@ -1,6 +1,5 @@
 <?php 
-$title_page = "Se connecter";
-require 'partials/header.php'; ?>
+$title = "Se connecter"; ?>
     <h1>Se connecter</h1>
     <form action="" method="POST">
         <div class="form-group">
@@ -15,5 +14,3 @@ require 'partials/header.php'; ?>
 
         <button type="submit" class="btn btn-primary">Se connecter</button>
     </form>
-
-<?php require 'partials/footer.php'; ?>

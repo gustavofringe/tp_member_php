@@ -17,7 +17,7 @@ class Route
         //dd($page);
         }
         if (empty($url[0])) {
-            require ROOT . '/controller/homeController.php';
+            require_once ROOT . '/controller/homeController.php';
             $controller = new Home();
             $controller->home();
             die();

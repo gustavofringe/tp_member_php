@@ -3,16 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title><?= $title; ?></title>
+        <title><?= $this->title; ?></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
         <!-- Place favicon.ico in the root directory -->
-        <link rel="icon" href="public/img/favicon.ico">
+        <link rel="icon" href="../public/img/favicon.ico">
         <link rel="stylesheet" href="public/css/main.css">
 
-        <link rel="stylesheet" href="<?php echo BASE; ?>/public/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<?php echo BASE_URL; ?>/public/css/bootstrap.min.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>

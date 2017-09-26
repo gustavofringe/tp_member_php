@@ -10,7 +10,7 @@ class Home extends Controller
     public function home(){
         //$this->loadView('home');
         $view = new View('pages', 'home');
-        
         $view->render(['home']);
+        dd($view);
     }
 }

@@ -6,14 +6,11 @@ class Login extends Controller
     public function __construct()
     {
         parent::__construct();
-        print_r(ROOT );
         $this->view = new View('users', 'login');
-        
     }
 
     public function login()
     {
-echo 111;
         //$model = new User();
         Session::start('user');
 //verify entry
@@ -31,7 +28,7 @@ echo 111;
                 Session::setFlash("Aucun compte ne correspond", 'danger');
             }
         }
-        $this->view->render(['login']);
+        $this->view->render(['login', 'se']);
         //include ROOT . '/views/login.php';
         //$this->require_view('login');
     }
