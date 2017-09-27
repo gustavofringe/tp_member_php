@@ -5,7 +5,7 @@ class Conf{
             'host'      =>'localhost',
             'database'  =>'member',
             'login'     =>'root',
-            'password'  =>'ava210709'
+            'password'  =>'root'
         ],
         'distrib' =>[
             'host'      =>'',

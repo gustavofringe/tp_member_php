@@ -1,11 +1,11 @@
 <?php $this->title = "S'enregistrer";?>
     <h1 class="mt-3">Inscription</h1>
     <!--if errors form-->
-<?php if (!empty($errors)): ?>
+<?php if (!empty($this->errors)): ?>
     <div class="alert alert-danger">
         <p>Vous n'avez pas rempli le formulaire correctement</p>
         <ul>
-            <?php foreach ($errors as $error): ?>
+            <?php foreach ($this->errors as $error): ?>
                 <li>
                     <?= $error; ?>
                 </li>

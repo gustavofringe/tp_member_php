@@ -6,17 +6,19 @@ class View {
   private $rendered = false;
   public $layout = 'default';
   public $request;
+  public $errors;
 
   public function __construct($controller, $action) {
     $this->file = ROOT."/views/".$controller.'/' . $action . ".php";
   }
 
-  public function render($data) {
+  public function render($data,$errors) {
+    $this->errors = $errors;
     $content = $this->renderFile($this->file, $data);
     $view = $this->renderFile(ROOT.'/views/layouts/'.$this->layout.'.php',
       array('title' => $this->title, 'content' => $content));
-      echo $view;
-
+      return $view;
+      return $errors;
   }
 
   private function renderFile($file, $data) {
@@ -26,7 +28,6 @@ class View {
         require $file;
         $content = ob_get_clean();
         require_once ROOT.'/views/layouts/'.$this->layout.'.php';
-
         $this->rendered = true;
     }
     else {

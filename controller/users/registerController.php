@@ -43,7 +43,7 @@ public $view;
                 die();
             }
         }
-        $this->view->render(['register']);
+        $this->view->render(['register'],$errors);
         //include ROOT.'/views/register.php';
         //$this->loadView('register');
     }
