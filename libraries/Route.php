@@ -5,54 +5,103 @@ class Route
     /**
      * Route constructor.
      */
+    private $url = false;
+    private $controller;
+
     public function __construct()
     {
-        $control = $this->loadController();
+        $this->getUrl();
+        if (empty($this->url[0])) {
+            $this->loadControllerDefault();
+        }
+            $this->loadController();
+            $this->methodExist();
     }
 
-    function loadController()
+    /**
+     *
+     */
+    private function getUrl()
     {
         $url = isset($_GET['url']) ? $_GET['url'] : null;
         $url = rtrim($url, "'");
-        $url = explode("/", $url);
-        
-        if (empty($url[0])) {
-            require_once ROOT . '/controller/homeController.php';
-            $controller = new Home();
-            $controller->home();
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        $this->url = explode("/", $url);
+
+    }
+
+    /**
+     *
+     */
+    private function loadControllerDefault()
+    {
+        require_once ROOT . '/controller/homeController.php';
+        $this->controller = new Home();
+        $this->controller->home();
+    }
+
+    /**
+     *
+     */
+    private function loadController()
+    {
+        $page = ROOT . '/controller/' . $this->url[0] . '/' . $this->url[1] . 'Controller.php';
+        if (file_exists($page)) {
+            require $page;
+            $this->controller = new $this->url[1];
+            $this->controller->loadModel('user');
+        } else {
+            $this->errors();
             die();
         }
-        
-        if(!empty($url[0])&&!empty($url[1])){
-            
-            require ROOT . '/controller/' . $url[0] . '/' . $url[1] . 'Controller.php';
-        }else{
-            $this->view = new View('errors', '404');
-            $this->view->render(['404']);
-            die();
-        }
-        $controller = new $url[1];
-        
-        $controller->loadModel('user');
-        $controller->{$url[1]}();
-        if (!empty($url[2]) && file_exists($url[2])) {
-            if (method_exists($controller, $url[2])) {
-                $controller->{$url[2]}($url[3], $url[4]);
-                die();
+    }
+
+    /**
+     *
+     */
+    private function methodExist()
+    {
+        $length = count($this->url);
+        $this->controller = new $this->url[1];
+        if ($length > 2) {
+            if (!method_exists($this->controller, $this->url[2])) {
+                $this->errors();
             }
         }
-        return $controller;
+        switch ($length) {
+            case 5:
+                //$controller->method(param1, param2,param3)
+                $this->controller->{$this->url[2]}($this->url[3], $this->url[4], $this->url[5]);
+                break;
+            case 4:
+                //$controller->method(param1, param2)
+                $this->controller->{$this->url[2]}($this->url[3], $this->url[4]);
+                break;
+            case 3:
+                //$controller->method(param1)
+                $this->controller->{$this->url[2]}($this->url[2]);
+                break;
+            case 2:
+                //$controller->method()
+                $this->controller->{$this->url[1]}();
+                break;
+            case 1:
+                $this->controller->index();
+                break;
+            default:
+                $this->errors();
+                break;
+        }
     }
-    public function error(){
-        if (isset($url[1]) && !file_exists($url[1])) {
-            $this->view = new View('errors', '404');
-            $this->view->render(['404']);
-            die();
-        }
-        if (isset($url[0]) && !file_exists($url[0])) {
-            $this->view = new View('errors', '404');
-            $this->view->render(['404']);
-            die();
-        }
+
+    /**
+     *
+     */
+    private function errors()
+    {
+        require ROOT . '/controller/errors.php';
+        $this->controller = new Errors();
+        $this->controller->index();
+        die();
     }
 }

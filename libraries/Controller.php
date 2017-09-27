@@ -1,9 +1,7 @@
 <?php
 class Controller
 {
-    public function __construct() {
-       //$this->file = ROOT."/views/".$controller.'/' . $action . ".php";
-    }
+    public function __construct() {}
 
     public function loadModel($name)
     {

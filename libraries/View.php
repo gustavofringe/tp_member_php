@@ -2,7 +2,6 @@
 class View {
 
   private $file;
-  private $title;
   private $rendered = false;
   public $layout = 'default';
   public $request;
@@ -12,11 +11,11 @@ class View {
     $this->file = ROOT."/views/".$controller.'/' . $action . ".php";
   }
 
-  public function render($data,$errors) {
+  public function render(array $data,$errors=null) {
     $this->errors = $errors;
     $content = $this->renderFile($this->file, $data);
     $view = $this->renderFile(ROOT.'/views/layouts/'.$this->layout.'.php',
-      array('title' => $this->title, 'content' => $content));
+      array('content' => $content));
       return $view;
       return $errors;
   }
